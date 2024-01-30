@@ -1,7 +1,9 @@
 # CSC 413 - Project Two - The Interpreter
 
-## Student Name  : Name here
+## Student Name  : Gineton Alencar
 
-## Student ID    : ID here
+## Student ID    : 920098605
 
-## Student Email : Email here
+## Student Email : galencar@mail.sfsu.edu
+
+## Personal Email: gineton.alencar@gmail.com
