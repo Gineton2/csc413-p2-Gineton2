@@ -1,5 +1,7 @@
 package interpreter.virtualmachine;
 
+import interpreter.bytecode.ByteCode;
+
 import java.util.ArrayList;
 
 public class Program {
@@ -9,6 +11,7 @@ public class Program {
     public Program() {
         program = new ArrayList<>();
     }
+
 
     protected ByteCode getCode(int programCounter) {
         return this.program.get(programCounter);
@@ -24,7 +27,7 @@ public class Program {
 
     }
 
-
+    // write AddCode function to add byte codes to Program array list
 
 
 }
