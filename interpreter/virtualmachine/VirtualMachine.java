@@ -20,15 +20,15 @@ public class VirtualMachine {
 
     // Obtained from given documentation
     public void executeProgram() {
-        programCounter = 0;
-        runTimeStack = new RunTimeStack();
-        returnAddress = new Stack<Integer>();
-        isRunning = true;
-
-        while (isRunning){
-            ByteCode code = program.getCode(programCounter);
-            code.execute(this);
-            programCounter++;
-        }
+//        programCounter = 0;
+//        runTimeStack = new RunTimeStack();
+//        returnAddress = new Stack<Integer>();
+//        isRunning = true;
+//
+//        while (isRunning){
+//            ByteCode code = program.getCode(programCounter);
+//            code.execute(this);
+//            programCounter++;
+//        }
     }
 }
