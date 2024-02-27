@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Program {
 
-    private ArrayList<ByteCode> program;
+    private ArrayList<ByteCode> program; //must stay private
 
     public Program() {
         program = new ArrayList<>();
@@ -24,6 +24,14 @@ public class Program {
      * HINT: make note what type of data-structure ByteCodes are stored in.
      */
     public void resolveAddress() {
+        // simple solution would be run for loop twice over program, there are O(n) solution(s) however
+
+        // 1st pass through arraylist, keeping track of label codes & their labels
+
+
+        // 2nd pass through arrayList, look for call, goto, and falsebranch codes
+        // then, look at stored label codes and find matching label value
+        // ex " val || (address)index " >> " (str)continue<<6>> || (int)(line)10 "
 
     }
 
