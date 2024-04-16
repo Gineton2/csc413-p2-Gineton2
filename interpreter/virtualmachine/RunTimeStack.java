@@ -16,6 +16,10 @@ class RunTimeStack {
         framePointer.add(0);
     }
 
+    public String dump(){ //no params, void or String
+
+    }
+
     private int lastIndex(){
         return this.runTimeStack.size()-1;
     }
@@ -54,7 +58,7 @@ class RunTimeStack {
         System.out.println(rs.peek());
         rs.pop();
         System.out.println(rs.peek());
-
-
+        // can use Stack class as a Vector (see Stack implementation in Java)
+        //  eg, `nums.get(2)` works
     }
 }
