@@ -21,6 +21,7 @@ public class VirtualMachine {
 
     // Obtained from given documentation
     public void executeProgram() {
+//* from given VirtualMachine class documentation *
 //        programCounter = 0;
 //        runTimeStack = new RunTimeStack();
 //        returnAddress = new Stack<Integer>();
