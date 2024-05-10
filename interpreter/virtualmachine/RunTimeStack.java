@@ -1,6 +1,7 @@
 package interpreter.virtualmachine;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Stack;
 
 class RunTimeStack {
@@ -11,8 +12,8 @@ class RunTimeStack {
     public RunTimeStack() {
         runTimeStack = new ArrayList<>();
         framePointer = new Stack<>();
-        // Add initial Frame Pointer, main is the entry
-        // point of our language, so its frame pointer is 0.
+        // Add initial Frame Pointer, main is the entrypoint
+        // of our language, so its frame pointer is 0.
         framePointer.add(0);
     }
 
@@ -24,11 +25,24 @@ class RunTimeStack {
      * Frame pointers would be 0, 3, 6
      */
     public void dump(){ //no params, use void or String
-
+        StringBuilder stackDump = new StringBuilder();
+        for (int i = 0; i < framePointer.size(); i++) {
+            int start = framePointer.get(i);
+            int end = (i == framePointer.size() - 1) ? runTimeStack.size() : framePointer.get(i + 1);
+            stackDump.append("[");
+            for (int j = start; j < end; j++) {
+                stackDump.append(runTimeStack.get(j));
+                if (j < (end - 1)) {
+                    stackDump.append(",");
+                }
+            }
+            stackDump.append("]");
+        }
+        System.out.println(stackDump);
     }
 
     private int lastIndex(){
-        return this.runTimeStack.size()-1;
+        return (this.runTimeStack.size() - 1);
     }
 
 
@@ -75,7 +89,11 @@ class RunTimeStack {
      * @param offset number of slots above current frame marker
      * @return item just loaded into the offset
      */
-    public int load(int offset){ return 0; }
+    public int load(int offset) {
+        // return push(runTimeStack(valueAtOffset))
+//        return this.push(this.runTimeStack(offset));
+        return 0;
+    }
 
     /**
      * TODO
@@ -112,6 +130,7 @@ class RunTimeStack {
         System.out.println(rs.peek());
         rs.pop();
         System.out.println(rs.peek());
+        rs.dump();
         // can use Stack class as a Vector (see Stack implementation in Java)
         //  eg, `nums.get(2)` works
     }
