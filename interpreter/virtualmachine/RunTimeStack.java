@@ -1,5 +1,6 @@
 package interpreter.virtualmachine;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
@@ -17,32 +18,38 @@ class RunTimeStack {
         framePointer.add(0);
     }
 
-    /**
-     * TODO
+    /*
      * Dumps the current state of the runTimeStack.
      * Prints portions of the stack based on respective frame markers.
      * Ex. [1,2,3] [4,5,6] [7,8]
      * Frame pointers would be 0, 3, 6
      */
     public void dump(){ //no params, use void or String
-        StringBuilder stackDump = new StringBuilder();
+        StringBuilder stackDump = new StringBuilder(); // We use StringBuilder for its mutability (vs Strings)
         for (int i = 0; i < framePointer.size(); i++) {
-            int start = framePointer.get(i);
-            int end = (i == framePointer.size() - 1) ? runTimeStack.size() : framePointer.get(i + 1);
+            int frameStart = framePointer.get(i);
+            int frameEnd = (i == lastFramePointerIndex()) ? runTimeStack.size() : framePointer.get(i + 1);
             stackDump.append("[");
-            for (int j = start; j < end; j++) {
+            for (int j = frameStart; j < frameEnd; j++) {
                 stackDump.append(runTimeStack.get(j));
-                if (j < (end - 1)) {
+                if (j < (frameEnd - 1)) {
                     stackDump.append(",");
                 }
             }
             stackDump.append("]");
+            if (i < lastFramePointerIndex()) {
+                stackDump.append(" ");
+            }
         }
         System.out.println(stackDump);
     }
 
     private int lastIndex(){
         return (this.runTimeStack.size() - 1);
+    }
+
+    private int lastFramePointerIndex() {
+        return (this.framePointer.size() - 1);
     }
 
 
@@ -74,64 +81,62 @@ class RunTimeStack {
     }
 
     /**
-     * TODO
      * Take top item of the runTimeStack and stores it into an offset
      * starting from the current frame.
      * @param offset number of slots above current frame marker
      * @return the item just stored
      */
-    public int store(int offset) { return 0; }
+    public int store(int offset) {
+        int storeIndex = framePointer.peek() + offset;
+        int valueToStore = pop();
+        runTimeStack.set(storeIndex, valueToStore);
+        return valueToStore;
+    }
 
     /**
-     * TODO
      * Take a value offset from the current frame marker and
      * push it to the top of the runTimeStack.
      * @param offset number of slots above current frame marker
      * @return item just loaded into the offset
      */
     public int load(int offset) {
-        // return push(runTimeStack(valueAtOffset))
-//        return this.push(this.runTimeStack(offset));
-        return 0;
+        int loadIndex = ((offset + framePointer.peek()));
+        int valueToLoad = runTimeStack.get(loadIndex);
+        return push(valueToLoad);
     }
 
     /**
-     * TODO
      * Create a new frame pointer at an offset index
-     * from the top of the runTimeStack
+     * from the top of the runTimeStack.
      * @param offset slots offset down from the top of the runTimeStack
      */
-    public void newFrameAt(int offset) {}
+    public void newFrameAt(int offset) {
+        framePointer.push(this.runTimeStack.size() - offset);
+//        this implementation seems to be off by one:
+//        framePointer.push(lastIndex() - offset);
+    }
 
     /**
-     * TODO
      * Pops the current frame off of the runTimeStack.
      * Removes the frame pointer value from the framePointerStack.
      */
-    public void popFrame(){}
+    public void popFrame(){
+        framePointer.pop();
+    }
 
     public static void  main(String[] args) {
         // testing push, pop, peek
+
         RunTimeStack rs = new RunTimeStack();
+        rs.dump();
         rs.push(5);
         rs.push(4);
         rs.push(3);
         rs.push(2);
         rs.push(1);
-
-        rs.runTimeStack.forEach(System.out::println);
-
-        rs.push(10);
-
-        System.out.println(rs.peek());
-        rs.pop();
-        System.out.println(rs.peek());
-        rs.push(100);
-        System.out.println(rs.peek());
-        rs.pop();
-        System.out.println(rs.peek());
         rs.dump();
-        // can use Stack class as a Vector (see Stack implementation in Java)
-        //  eg, `nums.get(2)` works
+
+        rs.newFrameAt(3); // Expected: [5, 4, 3] [2, 1]
+        rs.dump();
     }
 }
