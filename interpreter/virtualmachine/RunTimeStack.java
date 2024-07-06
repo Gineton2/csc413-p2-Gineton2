@@ -25,7 +25,7 @@ class RunTimeStack {
      * Frame pointers would be 0, 3, 6
      */
     public void dump(){ //no params, use void or String
-        StringBuilder stackDump = new StringBuilder(); // We use StringBuilder for its mutability (vs Strings)
+        StringBuilder stackDump = new StringBuilder();
         for (int i = 0; i < framePointer.size(); i++) {
             int frameStart = framePointer.get(i);
             int frameEnd = (i == lastFramePointerIndex()) ? runTimeStack.size() : framePointer.get(i + 1);
@@ -121,7 +121,10 @@ class RunTimeStack {
      * Removes the frame pointer value from the framePointerStack.
      */
     public void popFrame(){
-        framePointer.pop();
+        int poppedFramePointer = framePointer.pop();
+        while (runTimeStack.size() > poppedFramePointer) {
+            runTimeStack.remove(lastIndex());
+        }
     }
 
     public static void  main(String[] args) {
