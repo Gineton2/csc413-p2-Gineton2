@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class ByteCodeLoader {
@@ -37,7 +38,7 @@ public class ByteCodeLoader {
     public Program loadCodes() {
         String line;
         String[] items;
-        ArrayList<String> args = new ArrayList<>();
+        ArrayList<String> args;
         String byteCodeName; // ByteCode from .x.cod
         String className; // class after mapped from name in source code
         Class classBlueprint;
@@ -57,11 +58,12 @@ public class ByteCodeLoader {
                 // get declared constructor (should be no-arg constructor)
                 // create a new instance of bytecode using constructor
                 bc = (ByteCode) classBlueprint.getDeclaredConstructor().newInstance();
-                // TODO: grab remaining args
-
+                // grab remaining arg tokens after bytecode into arraylist
+                args = new ArrayList<>(Arrays.asList(items).subList(1,items.length));
                 // pass args to bytecode init fn
                 bc.init(args);
-                // TODO: add bytecode to program
+                // add bytecode to program
+                program.addCode(bc);
             }
         } catch (IOException | ClassNotFoundException ex) {
             System.out.println(ex);

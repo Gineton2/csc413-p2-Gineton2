@@ -28,7 +28,6 @@ public class Program {
 
         // 1st pass through arraylist, keeping track of label codes & their labels
 
-
         // 2nd pass through arrayList, look for call, goto, and falsebranch codes
         // then, look at stored label codes and find matching label value
         // ex " val || (address)index " >> " (str)continue<<6>> || (int)(line)10 "
@@ -36,6 +35,9 @@ public class Program {
     }
 
     // write AddCode function to add byte codes to Program array list
+    public void addCode(ByteCode bc) {
+        program.add(bc);
+    }
 
 
 }
