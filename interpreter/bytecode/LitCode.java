@@ -23,7 +23,7 @@ public class LitCode extends ByteCode {
         }
         return base;
         // ternary operator example:
-        //  return (id != null) ? base += (" int " + id) : base;
+        // return (id != null) ? base += (" int " + id) : base;
     }
 }
 
