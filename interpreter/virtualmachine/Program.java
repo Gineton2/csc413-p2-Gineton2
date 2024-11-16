@@ -34,10 +34,10 @@ public class Program {
 
     }
 
-    // write AddCode function to add byte codes to Program array list
-    public void addCode(ByteCode bc) {
-        program.add(bc);
-    }
-
+    /**
+     * Program is where ByteCodes are prepared
+     * @param bc ByteCode to be added to Program.
+     */
+    public void addCode(ByteCode bc) { program.add(bc); }
 
 }

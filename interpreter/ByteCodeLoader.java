@@ -46,23 +46,18 @@ public class ByteCodeLoader {
         ByteCode bc;
         try {
             while (this.byteSource.ready()) {
-                // tokenize read line
                 line = this.byteSource.readLine();
                 items = line.split("\\s+");
-                // grab first token of each line (bytecode)
                 byteCodeName = items[0];
-                // grab class name from token
                 className = CodeTable.getClassName(byteCodeName);
                 // load class blueprint from classname
                 classBlueprint = Class.forName("interpreter.bytecode." + className);
                 // get declared constructor (should be no-arg constructor)
                 // create a new instance of bytecode using constructor
                 bc = (ByteCode) classBlueprint.getDeclaredConstructor().newInstance();
-                // grab remaining arg tokens after bytecode into arraylist
+                // put remaining arg tokens after the bytecode into a sub-arraylist
                 args = new ArrayList<>(Arrays.asList(items).subList(1,items.length));
-                // pass args to bytecode init fn
                 bc.init(args);
-                // add bytecode to program
                 program.addCode(bc);
             }
         } catch (IOException | ClassNotFoundException ex) {

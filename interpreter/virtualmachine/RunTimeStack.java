@@ -126,20 +126,4 @@ class RunTimeStack {
             runTimeStack.remove(lastIndex());
         }
     }
-
-//    public static void  main(String[] args) {
-//        // testing push, pop, peek
-////
-////        RunTimeStack rs = new RunTimeStack();
-////        rs.dump();
-////        rs.push(5);
-////        rs.push(4);
-////        rs.push(3);
-////        rs.push(2);
-////        rs.push(1);
-////        rs.dump();
-////
-////        rs.newFrameAt(3); // Expected: [5, 4, 3] [2, 1]
-////        rs.dump();
-//    }
 }
