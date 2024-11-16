@@ -21,22 +21,15 @@ public class VirtualMachine {
 
     // Obtained from given documentation
     public void executeProgram() {
-//* from given VirtualMachine class documentation *
-//        programCounter = 0;
-//        runTimeStack = new RunTimeStack();
-//        returnAddress = new Stack<Integer>();
-//        isRunning = true;
-//
-//        while (isRunning){
-//            ByteCode code = program.getCode(programCounter);
-//            code.execute(this);
-//            programCounter++;
-//        }
-
-        //from video 14: A2 Dumping Explanation and Hints
-        ByteCode bc = new LitCode();
-        //bc.dump();
-        System.out.println(bc); //println uses polymorphism to call toString method, else prints reference
-
+        //* from given VirtualMachine class documentation *
+        programCounter = 0;
+        runTimeStack = new RunTimeStack();
+        returnAddress = new Stack<Integer>();
+        isRunning = true;
+        while (isRunning){
+            ByteCode code = program.getCode(programCounter);
+            code.execute(this);
+            programCounter++;
+        }
     }
 }
