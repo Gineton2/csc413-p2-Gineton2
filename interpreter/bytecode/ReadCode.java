@@ -4,7 +4,12 @@ import interpreter.virtualmachine.VirtualMachine;
 
 import java.util.ArrayList;
 
-public class LoadCode extends ByteCode{
+public class ReadCode extends ByteCode {
+    /**
+     * Initializes each ByteCode.
+     *
+     * @param args the arguments which make up each ByteCode instruction
+     */
     @Override
     public void init(ArrayList<String> args) {
 
