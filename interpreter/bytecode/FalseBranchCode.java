@@ -4,7 +4,7 @@ import interpreter.virtualmachine.VirtualMachine;
 
 import java.util.ArrayList;
 
-public class FalseBranchCode extends ByteCode {
+public class FalseBranchCode extends JumpByteCode {
     /**
      * Initializes each ByteCode.
      *

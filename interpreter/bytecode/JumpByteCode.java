@@ -4,8 +4,9 @@ import interpreter.virtualmachine.VirtualMachine;
 
 import java.util.ArrayList;
 
-public class CallCode extends JumpByteCode{
-
+public abstract class JumpByteCode extends ByteCode {
+    protected int labelAddress;
+    protected String label;
     /**
      * Initializes each ByteCode.
      *
@@ -13,7 +14,6 @@ public class CallCode extends JumpByteCode{
      */
     @Override
     public void init(ArrayList<String> args) {
-
     }
 
     /**

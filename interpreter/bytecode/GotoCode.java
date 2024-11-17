@@ -4,7 +4,7 @@ import interpreter.virtualmachine.VirtualMachine;
 
 import java.util.ArrayList;
 
-public class GotoCode extends ByteCode {
+public class GotoCode extends JumpByteCode {
     /**
      * Initializes each ByteCode.
      *
