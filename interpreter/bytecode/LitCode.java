@@ -5,8 +5,8 @@ import interpreter.virtualmachine.VirtualMachine;
 import java.util.ArrayList;
 
 public class LitCode extends ByteCode {
-    int value;
-    String id;
+    private int value;
+    private String id;
 
     /**
      * Lit ByteCode takes one or two arguments to declare an integer.
