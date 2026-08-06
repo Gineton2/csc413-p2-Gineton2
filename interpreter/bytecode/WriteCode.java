@@ -4,6 +4,9 @@ import interpreter.virtualmachine.VirtualMachine;
 
 import java.util.ArrayList;
 
+/**
+ * Write ByteCode is used to display the top value of the RunTimeStack to the console.
+ */
 public class WriteCode extends ByteCode {
     /**
      * Initializes each ByteCode.
@@ -16,13 +19,13 @@ public class WriteCode extends ByteCode {
     }
 
     /**
-     * Executes each ByteCode according to their specified behavior.
+     * Displays the top value of the runTimeStack.
      *
      * @param vm the virtual machine that will execute the ByteCodes
      */
     @Override
     public void execute(VirtualMachine vm) {
-
+        System.out.println(vm.peekRunTimeStack());
     }
 
     /**
@@ -32,6 +35,6 @@ public class WriteCode extends ByteCode {
      */
     @Override
     public String toString() {
-        return null;
+        return "WRITE";
     }
 }

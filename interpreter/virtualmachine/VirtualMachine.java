@@ -1,14 +1,13 @@
 package interpreter.virtualmachine;
 
 import interpreter.bytecode.ByteCode;
-import interpreter.bytecode.LitCode;
 
 import java.util.Stack;
 
-// middleman bw programs and bytecode/runtimestack
+/**
+ * The VirtualMachine is the interface between a program and ByteCodes.
+ */
 public class VirtualMachine {
-
-    // do not break encapsulation
     private RunTimeStack   runTimeStack;
     private Stack<Integer> returnAddress;
     private Program        program;
@@ -33,4 +32,10 @@ public class VirtualMachine {
     }
 
     public void haltProgram(){ isRunning = false; }
+
+    public void pushRunTimeStack(int value) { runTimeStack.push(value); }
+
+    public int popRunTimeStack() { return runTimeStack.pop(); }
+
+    public int peekRunTimeStack() { return runTimeStack.peek(); }
 }

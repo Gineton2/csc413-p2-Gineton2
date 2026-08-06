@@ -4,6 +4,10 @@ import interpreter.virtualmachine.VirtualMachine;
 
 import java.util.ArrayList;
 
+/**
+ * Lit ByteCode is used to push literal values to the runtime stack.
+ * Lit optionally is accompanied by an id variable name the value belongs to.
+ */
 public class LitCode extends ByteCode {
     private int value;
     private String id;
@@ -12,7 +16,7 @@ public class LitCode extends ByteCode {
      * Lit ByteCode takes one or two arguments to declare an integer.
      * LitCode arguments will include the literal values to be stored and,
      * optionally, a variable name to represent the value.
-     * @param args Lit ByteCode, literal values, and (optionally) a variable name.
+     * @param args string list with literal value and (optionally) a variable name.
      */
     @Override
     public void init(ArrayList<String> args) {
@@ -20,7 +24,8 @@ public class LitCode extends ByteCode {
         // see Lecture Video 14:A2 Dumping Explanation and Hints
         if (args.isEmpty() || args.size() > 2) {
             throw new IllegalArgumentException(
-                    "LIT ByteCode requires one or two arguments: an Integer value and, optionally, a variable name.");
+                    "LIT ByteCode requires one or two arguments: " +
+                            "an Integer value and, optionally, a variable name.");
         }
         this.value = Integer.parseInt(args.get(0));
         this.id = (args.size() > 1) ? args.get(1) : null;
@@ -29,21 +34,19 @@ public class LitCode extends ByteCode {
     /**
      * When executed, LitCode takes one or two arguments (literal value and id)
      * and pushes that one literal value to the top of the RunTimeStack.
-     * If dumping is on, it should dump the ByteCode and its arguments.
      * @param vm the virtual machine that will execute the ByteCodes
      */
     @Override
     public void execute(VirtualMachine vm) {
-
+        vm.pushRunTimeStack(this.value);
     }
 
     /**
-     * @return
+     * @return a string containing the ByteCode and its arguments
      */
     @Override
     public String toString() {
-        // see Lecture Video 14:A2 Dumping Explanation and Hints
         String base = "LIT " + value;
-        return (id != null) ? base + (" int " + id) : base;
+        return (id != null) ? base + " " + id + ("\tint " + id) : base;
     }
 }
