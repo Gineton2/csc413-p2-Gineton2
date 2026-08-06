@@ -19,9 +19,8 @@ public class VirtualMachine {
         this.program = program;
     }
 
-    // Obtained from given documentation
     public void executeProgram() {
-        //* from given VirtualMachine class documentation *
+        // from given VirtualMachine class documentation/spec
         programCounter = 0;
         runTimeStack = new RunTimeStack();
         returnAddress = new Stack<Integer>();
@@ -32,4 +31,6 @@ public class VirtualMachine {
             programCounter++;
         }
     }
+
+    public void haltProgram(){ isRunning = false; }
 }

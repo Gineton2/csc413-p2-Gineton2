@@ -4,6 +4,10 @@ import interpreter.virtualmachine.VirtualMachine;
 
 import java.util.ArrayList;
 
+/**
+ * Alerts the virtual machine that program execution is to be stopped.
+ * It may not itself kill or stop execution fo the program.
+ */
 public class HaltCode extends ByteCode {
     /**
      * Initializes each ByteCode.
@@ -22,7 +26,7 @@ public class HaltCode extends ByteCode {
      */
     @Override
     public void execute(VirtualMachine vm) {
-
+        vm.haltProgram();
     }
 
     /**
