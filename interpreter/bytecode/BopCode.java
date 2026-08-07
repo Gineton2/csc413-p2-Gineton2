@@ -3,7 +3,6 @@ package interpreter.bytecode;
 import interpreter.virtualmachine.VirtualMachine;
 
 import java.util.ArrayList;
-mds cause hyper wrong fucous
 /**
  * Bop implements binary operations. The BopCode is the given operator itself.
  * Operators include: +, -, /, *, ==, !=, <=, >, >=, <, |, &.
