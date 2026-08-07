@@ -14,9 +14,7 @@ public class WriteCode extends ByteCode {
      * @param args the arguments which make up each ByteCode instruction
      */
     @Override
-    public void init(ArrayList<String> args) {
-
-    }
+    public void init(ArrayList<String> args) {}
 
     /**
      * Displays the top value of the runTimeStack.
